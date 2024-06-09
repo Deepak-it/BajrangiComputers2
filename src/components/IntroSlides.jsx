@@ -1,7 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
+import { MyContext } from "../context/MyContext";
 
 const IntroSlides = () => {
     const [activeIndex, setActiveIndex] = useState(0);
+
+    const { state, setState } = useContext(MyContext);
 
     useEffect(() => {
         const interval = setInterval(() => {
@@ -13,7 +16,7 @@ const IntroSlides = () => {
     }, [activeIndex]);
 
     return (
-        <section className="container-fluid mt-2">
+        <section className="container-fluid p-0 mt-2">
             <div className="row text-center">
                 <div className="col-md-12">
                     {/* Carousel wrapper */}
@@ -47,6 +50,14 @@ const IntroSlides = () => {
                                     <p>We are reputed all over kaithal, Haryana for providing the best and affordable laptops</p>
                                 </div>
                             </div>
+                                                       {/* Slide 3 */}
+                                {/* <div className={`carousel-item ${activeIndex === 3 ? 'active' : ''}`}>
+                                <img style={{ maxHeight: "80vh", objectFit: "cover" }} src="/assets/cctv-slide2.jpeg" className="d-block w-100" alt="Slide 4" />
+                                <div className="carousel-caption d-none d-md-block">
+                                    <h5>Cameras</h5>
+                                    <p>Full Proof Secuirty with HD Cameras</p>
+                                </div>
+                            </div> */}
                         </div>
                         {/* Inner */}
 

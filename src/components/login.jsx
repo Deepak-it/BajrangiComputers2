@@ -1,10 +1,12 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import { LOGIN } from "../APIServices/APIEndpoints";
 import { NotificationManager } from "react-notifications";
 import Contact from "./contact";
 import "../../node_modules/bootstrap/dist/css/bootstrap.css"
 import { useNavigate } from "react-router-dom";
 import DocumentTitle from "../changeTitle";
+import { useContext } from "react";
+import { MyContext } from "../context/MyContext";
 
 function Login() {
   DocumentTitle("Login || Bajrang Computers")
@@ -16,7 +18,8 @@ function Login() {
   const date = new Date();
   const currentYear = date.getFullYear();
   const navigate = useNavigate()
-
+  const { state, setState } = useContext(MyContext);
+  const isLoggedIn = state;
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevState) => ({
@@ -26,7 +29,6 @@ function Login() {
   };
 
   const handleValidation = () => {
-    debugger;
     if (!formData.email || !formData.password) {
       setLoginFormValid(false);
     }
@@ -38,6 +40,7 @@ function Login() {
       const response = await LOGIN(formData)
       if(response.status === 200){
         NotificationManager.success("Login Successful")
+        setState(prevState => ({ ...prevState, isLoggedIn: true }));
         navigate("/")
       }
     }

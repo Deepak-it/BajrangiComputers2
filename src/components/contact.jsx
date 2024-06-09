@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { CONTACT } from "../APIServices/APIEndpoints";
 import { NotificationManager } from "react-notifications";
 import DocumentTitle from "../changeTitle";
+import { MyContext } from "../context/MyContext";
 
 function Contact() {
     DocumentTitle("Contact || Bajrang Computers")
+    const { state, setState } = useContext(MyContext);
     const [formData, setFormData] = useState({
         fullName: "",
         email: "",
@@ -23,7 +25,6 @@ function Contact() {
     };
 
     const handleValidation = () => {
-        debugger;
         if (!formData.email || !formData.fullName || !formData.phone || !formData.subject || !formData.message) {
             setContactFormValid(false);
         }
@@ -31,7 +32,6 @@ function Contact() {
 
     const handleSubmit = () => {
         handleValidation()
-        debugger;
         if (isContactFormValid) {
            const response =  CONTACT(formData)
            if(response.status === 200){
@@ -43,7 +43,7 @@ function Contact() {
 
     return <>
         <section class="py-3 py-md-5 py-xl-8">
-            <div class="container-fluid">
+            <div class="container-fluid ">
                 <div class="row">
                     <div class="col-12 col-md-10 col-lg-8">
                         <h3 class="fs-5 mb-2 text-secondary text-uppercase">Contact</h3>

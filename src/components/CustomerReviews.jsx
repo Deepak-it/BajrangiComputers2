@@ -1,11 +1,14 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import { Carousel } from 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import DocumentTitle from '../changeTitle';
+import { MyContext } from '../context/MyContext';
 
 const Testimonials = () => {
   const [activeIndex, setActiveIndex] = useState(0);
 
+  const { state, setState } = useContext(MyContext);
+  
   useEffect(() => {
     const interval = setInterval(() => {
         const newIndex = (activeIndex + 1) % 3; // Assuming there are 3 slides

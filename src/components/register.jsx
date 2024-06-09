@@ -21,7 +21,6 @@ function Register() {
   };
 
   const handleValidation = () => {
-    debugger;
     if (!formData.email || !formData.password) {
       setLoginFormValid(false);
     }

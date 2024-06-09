@@ -1,10 +1,13 @@
 import React from "react";
 import DocumentTitle from "../changeTitle";
+import { useContext } from "react";
+import { MyContext } from "../context/MyContext";
 
 function Services() {
     DocumentTitle("Services || Bajrang Computers")
+    const { state, setState } = useContext(MyContext);
     return <>
-    <div className="container-fluid mt-5">
+    <div className="container-fluid p-0 mt-5">
         <div class="row mb-2 mt-2">
             <div class="col-sm-6">
                 <div class="card bg-dark text-white">

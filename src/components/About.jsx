@@ -1,13 +1,15 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useNavigate } from 'react-router-dom';
 import DocumentTitle from '../changeTitle';
+import { MyContext } from '../context/MyContext';
 
 const About = () => {
   DocumentTitle("About || Bajrang Computers")
+  const { state, setState } = useContext(MyContext);
   const navigate = useNavigate();
   return (
-    <div className="container-fluid mt-5 mb-5">
+    <div className="container-fluid p-0 mt-5 mb-5">
       <div className="row">
         {/* Card 1 */}
         <div className="col-md-4">

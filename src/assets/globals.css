@@ -34,3 +34,6 @@
     /* justify-content: flex-end; */
     flex-direction: column;
 }
+.nav-link :active{
+    color: #fe7c04
+}
