@@ -1,7 +1,12 @@
+import React from 'react';
+import { useLocation } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
 
 const NavBar = () => {
+  const location = useLocation();
+  const { pathname } = location;
+
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <div className="container-fluid">
@@ -23,19 +28,22 @@ const NavBar = () => {
           </a>
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item">
-              <a className="nav-link" href="/">Dashboard</a>
+              <a className={`nav-link ${pathname === '/' ? 'active' : ''}`} href="/">Dashboard</a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="/about">About</a>
+              <a className={`nav-link ${pathname === '/about' ? 'active' : ''}`} href="/about">About</a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="/contact">Contact</a>
+              <a className={`nav-link ${pathname === '/contact' ? 'active' : ''}`} href="/contact">Contact</a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="/services">Services</a>
+              <a className={`nav-link ${pathname === '/services' ? 'active' : ''}`} href="/services">Services</a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="/categories">Categories</a>
+              <a className={`nav-link ${pathname === '/categories' ? 'active' : ''}`} href="/categories">Categories</a>
+            </li>
+            <li className="nav-item">
+              <a className={`nav-link ${pathname === '/testimonials' ? 'active' : ''}`} href="/testimonials">Testimonials</a>
             </li>
             <li className="nav-item">
               <a className="nav-link" href="/login">Logout</a>
@@ -108,5 +116,6 @@ const NavBar = () => {
 };
 
 export default NavBar;
+
 
 

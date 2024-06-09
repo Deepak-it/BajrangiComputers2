@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import { CONTACT } from "../APIServices/APIEndpoints";
 import { NotificationManager } from "react-notifications";
+import DocumentTitle from "../changeTitle";
 
 function Contact() {
+    DocumentTitle("Contact || Bajrang Computers")
     const [formData, setFormData] = useState({
         fullName: "",
         email: "",
@@ -111,7 +113,7 @@ function Contact() {
                                         </svg>
                                     </div>
                                     <div>
-                                        <h4 class="mb-2">Office</h4>
+                                        <h4 class="mb-2">Address</h4>
                                         <p class="mb-2">Please visit us to have a discussion.</p>
                                         <hr class="w-50 mb-3 border-dark-subtle"></hr>
                                             <address class="m-0 text-secondary">8014 Edith Blvd NE, Albuquerque, New York, United States</address>

@@ -1,7 +1,9 @@
 import React from "react"
 import { useNavigate } from "react-router-dom"
+import DocumentTitle from "../changeTitle"
 
 const Categories = () => {
+  DocumentTitle("Categories || Bajrang Computers")
   const navigate = useNavigate()
   return <>
     <div class="container-fluid mt-5 card-group">
@@ -10,7 +12,7 @@ const Categories = () => {
         <div class="card-body">
           <h5 class="card-title">New Products</h5>
           <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-          <a href="#" className="btn btn-secondary">Go somewhere</a>
+          <a href="#" className="btn btn-primary">Go somewhere</a>
         </div>
       </div>
 
@@ -20,7 +22,7 @@ const Categories = () => {
         <div class="p-5 card-body">
           <h5 class="card-title">Most Popular Products</h5>
           <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-          <a href="#" className="btn btn-secondary">Go somewhere</a>    </div>
+          <a href="#" className="btn btn-primary">Go somewhere</a>    </div>
       </div>
 
       <div class="card px-2">
@@ -28,7 +30,7 @@ const Categories = () => {
         <div class="card-body">
           <h5 class="card-title">Best Value</h5>
           <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
-          <a href="#" className="btn btn-secondary">Go somewhere</a>    </div>
+          <a href="#" className="btn btn-primary">Go somewhere</a>    </div>
       </div>
     </div>
   </>

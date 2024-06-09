@@ -16,6 +16,7 @@ import Services from './components/services';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import Categories from './components/categories';
 import NewProducts from './components/NewProducts';
+import Testimonials from './components/CustomerReviews';
 
 
 
@@ -25,7 +26,7 @@ function App() {
     <div className="App">
     <NavBar/>
     <NotificationContainer/>
-    <div style = {{minHeight: '100vh'}}>
+    <div style = {{minHeight: '100vh', overflowX: 'hidden'}}>
     <Routes>
       <Route path="/" element={ <Dashboard/> } />
       <Route path="register" element={ <Register/> } />
@@ -35,6 +36,7 @@ function App() {
       <Route path="services" element={ <Services/> } />
       <Route path="categories" element = {<Categories/>} />
       <Route path="categories/newproducts" element = {<NewProducts/>} />
+      <Route path="testimonials" element = {<Testimonials/>} />
     </Routes>
     </div>
     <Footer/>

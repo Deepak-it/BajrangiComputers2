@@ -1,8 +1,10 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useNavigate } from 'react-router-dom';
+import DocumentTitle from '../changeTitle';
 
 const About = () => {
+  DocumentTitle("About || Bajrang Computers")
   const navigate = useNavigate();
   return (
     <div className="container-fluid mt-5 mb-5">

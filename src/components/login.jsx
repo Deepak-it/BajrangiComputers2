@@ -4,8 +4,10 @@ import { NotificationManager } from "react-notifications";
 import Contact from "./contact";
 import "../../node_modules/bootstrap/dist/css/bootstrap.css"
 import { useNavigate } from "react-router-dom";
+import DocumentTitle from "../changeTitle";
 
 function Login() {
+  DocumentTitle("Login || Bajrang Computers")
   const[formData, setFormData] = useState({
     email: "",
     password: "",
