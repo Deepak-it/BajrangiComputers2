@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import { LOGIN } from "../APIServices/APIEndpoints";
+import { REGISTER } from "../APIServices/APIEndpoints";
 import { NotificationManager } from "react-notifications";
 import Contact from "./contact";
 
@@ -7,6 +7,7 @@ function Register() {
   const[formData, setFormData] = useState({
     email: "",
     password: "",
+    confirmPassword: ""
   })
   const [isLoginFormValid, setLoginFormValid] = useState(true)
   const date = new Date();
@@ -21,18 +22,18 @@ function Register() {
   };
 
   const handleValidation = () => {
-    if (!formData.email || !formData.password) {
+    if (!formData.email || !formData.password || !formData.confirmPassword) {
       setLoginFormValid(false);
     }
   }
 
   const handleSubmit = async () => {
+    debugger;
     handleValidation()
     if(isLoginFormValid){
-      const response = await LOGIN(formData)
-      console.log(response)
+      const response = await REGISTER(formData)
       if(response.status === 200){
-        NotificationManager.success("login successful")
+        NotificationManager.success("registeration successful")
       }
     }
   }
@@ -114,6 +115,22 @@ function Register() {
                 </label>
               </div>
 
+              
+              <div data-mdb-input-init className="form-outline mb-3">
+                <input
+                  value = {formData.confirmPassword}
+                  type="password"
+                  id="form3Example4"
+                  className="form-control form-control-lg"
+                  placeholder="Enter Your password again"
+                  name = "confirmPassword"
+                  onChange = {handleChange}
+                />
+                <label className="form-label" htmlFor="form3Example4">
+                  Confirm Password
+                </label>
+              </div>
+
               <div className="d-flex justify-content-between align-items-center">
                 <div className="form-check mb-0">
                   <input
@@ -143,33 +160,14 @@ function Register() {
                   style={{ paddingLeft: '2.5rem', paddingRight: '2.5rem' }}
                   onClick = {handleSubmit}
                 >
-                  Login
+                  Register
                 </button>
                 <p className="small fw-bold mt-2 pt-1 mb-0">
-                  Don't have an account? <a href="#!" className="link-danger">Register</a>
+                  Already have an account? <a href="#!" className="link-danger">Login</a>
                 </p>
               </div>
             </form>
           </div>
-        </div>
-      </div>
-      <div className="d-flex flex-column flex-md-row text-center text-md-start justify-content-between py-4 px-4 px-xl-5 bg-primary">
-        <div className="text-white mb-3 mb-md-0">
-          Copyright © {currentYear}. All rights reserved.
-        </div>
-        <div>
-          <a href="#!" className="text-white me-4">
-            <i className="fab fa-facebook-f"></i>
-          </a>
-          <a href="#!" className="text-white me-4">
-            <i className="fab fa-twitter"></i>
-          </a>
-          <a href="#!" className="text-white me-4">
-            <i className="fab fa-google"></i>
-          </a>
-          <a href="#!" className="text-white">
-            <i className="fab fa-linkedin-in"></i>
-          </a>
         </div>
       </div>
     </section>

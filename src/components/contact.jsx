@@ -2,11 +2,9 @@ import React, { useContext, useState } from "react";
 import { CONTACT } from "../APIServices/APIEndpoints";
 import { NotificationManager } from "react-notifications";
 import DocumentTitle from "../changeTitle";
-import { MyContext } from "../context/MyContext";
 
 function Contact() {
     DocumentTitle("Contact || Bajrang Computers")
-    const { state, setState } = useContext(MyContext);
     const [formData, setFormData] = useState({
         fullName: "",
         email: "",

@@ -1,0 +1,4 @@
+// types.js
+
+export const SAVE_LOGIN_RESPONSE = 'SAVE_LOGIN_RESPONSE';
+export const CONTACT_US_RESPONSE = 'CONTACT_US_RESPONSE';

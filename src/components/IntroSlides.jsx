@@ -1,19 +1,30 @@
-import React, { useContext, useEffect, useState } from "react";
-import { MyContext } from "../context/MyContext";
+import React, { useEffect, useState } from "react";
+// import { getSlideData } from "../APIServices/APIEndpoints";
 
 const IntroSlides = () => {
     const [activeIndex, setActiveIndex] = useState(0);
+    const [slides, setSlides] = useState([]);
 
-    const { state, setState } = useContext(MyContext);
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await getSlideData();
+                setSlides(response?.data || []);
+            } catch (error) {
+                console.error("Error fetching slides data:", error);
+            }
+        };
+        fetchData();
+    }, []);
 
     useEffect(() => {
         const interval = setInterval(() => {
-            const newIndex = (activeIndex + 1) % 3; // Assuming there are 3 slides
+            const newIndex = (activeIndex + 1) % slides.length;
             setActiveIndex(newIndex);
         }, 5000);
 
         return () => clearInterval(interval);
-    }, [activeIndex]);
+    }, [activeIndex, slides.length]);
 
     return (
         <section className="container-fluid p-0 mt-2">
@@ -21,43 +32,22 @@ const IntroSlides = () => {
                 <div className="col-md-12">
                     {/* Carousel wrapper */}
                     <div id="carouselExample" className="carousel slide" data-bs-ride="carousel">
-
                         {/* Inner */}
                         <div className="carousel-inner">
-                            {/* Slide 1 */}
-                            <div className={`carousel-item ${activeIndex === 0 ? 'active' : ''}`}>
-                                <img style={{ maxHeight: "80vh", objectFit: "cover" }} src="/assets/slide1.jpg" className="d-block w-100" alt="Slide 1" />
-                                <div className="carousel-caption d-none d-md-block">
-                                    <h5>Work From Home SetUps</h5>
-                                    <p>We Provide WFH setups at an affordable price. These setups are available in two forms. You can purchase them or can rent them.</p>
+                            {slides.map((slide, index) => (
+                                <div key={index} className={`carousel-item ${activeIndex === index ? 'active' : ''}`}>
+                                    <img
+                                        style={{ maxHeight: "80vh", objectFit: "cover" }}
+                                        src={slide.image}  // assuming 'image' is the key for the image URL in the slide object
+                                        className="d-block w-100"
+                                        alt={`Slide ${index + 1}`}
+                                    />
+                                    <div className="carousel-caption d-none d-md-block">
+                                        <h5>{slide.slideTitle}</h5>
+                                        <p>{slide.slideDesc}</p>
+                                    </div>
                                 </div>
-                            </div>
-
-                            {/* Slide 2 */}
-                            <div className={`carousel-item ${activeIndex === 1 ? 'active' : ''}`}>
-                                <img style={{ maxHeight: "80vh", objectFit: "cover" }} src="/assets/slide2111.jpg" className="d-block w-100" alt="Slide 2" />
-                                <div className="carousel-caption d-none d-md-block">
-                                    <h5>IT Solution</h5>
-                                    <p>We have a dedicated and experienced team of Software Engineers who can help you with programming solutions. We can help you maintain your servers as well .</p>
-                                </div>
-                            </div>
-
-                            {/* Slide 3 */}
-                            <div className={`carousel-item ${activeIndex === 2 ? 'active' : ''}`}>
-                                <img style={{ maxHeight: "80vh", objectFit: "cover" }} src="/assets/slides41.jpg" className="d-block w-100" alt="Slide 4" />
-                                <div className="carousel-caption d-none d-md-block">
-                                    <h5>Laptops</h5>
-                                    <p>We are reputed all over kaithal, Haryana for providing the best and affordable laptops</p>
-                                </div>
-                            </div>
-                                                       {/* Slide 3 */}
-                                {/* <div className={`carousel-item ${activeIndex === 3 ? 'active' : ''}`}>
-                                <img style={{ maxHeight: "80vh", objectFit: "cover" }} src="/assets/cctv-slide2.jpeg" className="d-block w-100" alt="Slide 4" />
-                                <div className="carousel-caption d-none d-md-block">
-                                    <h5>Cameras</h5>
-                                    <p>Full Proof Secuirty with HD Cameras</p>
-                                </div>
-                            </div> */}
+                            ))}
                         </div>
                         {/* Inner */}
 
@@ -76,6 +66,7 @@ const IntroSlides = () => {
             </div>
         </section>
     );
-}
+};
 
 export default IntroSlides;
+

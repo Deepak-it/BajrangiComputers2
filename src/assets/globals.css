@@ -37,3 +37,23 @@
 .nav-link :active{
     color: #fe7c04
 }
+
+
+/* Testimonials.css */
+.testimonial-content {
+    max-width: 800px;
+    margin: auto;
+    padding: 20px;
+  }
+  
+  .testimonial-text {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  
+  @media (max-width: 768px) {
+    .testimonial-text {
+      white-space: normal;
+    }
+  }

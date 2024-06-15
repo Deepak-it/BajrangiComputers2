@@ -1,19 +1,19 @@
-import React, { useContext } from 'react';
-import { useLocation } from 'react-router-dom';
+import React from 'react';
+import { useLocation, Link } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
 import "../assets/globals.css";
-import { MyContext } from '../context/MyContext';
+import { useSelector } from 'react-redux';
 
 const NavBar = () => {
   const location = useLocation();
   const { pathname } = location;
-  const { state } = useContext(MyContext);
-  const { isLoggedIn } = state;
+  const loginResponse = useSelector((state) => state.auth.loginResponse);
+  const isAdmin = loginResponse?.isAdmin;
 
   return (
     <>
-      {pathname != '/login' && (
+      {pathname !== '/login' && (
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
           <div className="container-fluid">
             <button
@@ -29,30 +29,38 @@ const NavBar = () => {
             </button>
 
             <div className="collapse navbar-collapse" id="navbarSupportedContent">
-              <a className="navbar-brand mt-2 mt-lg-0" href="/">
+              <Link className="navbar-brand mt-2 mt-lg-0" to="/">
                 Bajrang Computers
-              </a>
+              </Link>
               <ul className="text-white navbar-nav me-auto mb-2 mb-lg-0">
                 <li className="nav-item">
-                  <a className={`nav-link ${pathname === '/' ? 'active' : ''}`} href="/">Dashboard</a>
+                  <Link className={`nav-link ${pathname === '/' ? 'active' : ''}`} to="/">Dashboard</Link>
                 </li>
                 <li className="nav-item">
-                  <a className={`nav-link ${pathname === '/about' ? 'active' : ''}`} href="/about">About</a>
+                  <Link className={`nav-link ${pathname === '/about' ? 'active' : ''}`} to="/about">About</Link>
                 </li>
                 <li className="nav-item">
-                  <a className={`nav-link ${pathname === '/contact' ? 'active' : ''}`} href="/contact">Contact</a>
+                  <Link className={`nav-link ${pathname === '/contact' ? 'active' : ''}`} to="/contact">Contact</Link>
                 </li>
                 <li className="nav-item">
-                  <a className={`nav-link ${pathname === '/services' ? 'active' : ''}`} href="/services">Services</a>
+                  <Link className={`nav-link ${pathname === '/services' ? 'active' : ''}`} to="/services">Services</Link>
                 </li>
                 <li className="nav-item">
-                  <a className={`nav-link ${pathname === '/categories' ? 'active' : ''}`} href="/categories">Categories</a>
+                  <Link className={`nav-link ${pathname === '/categories' ? 'active' : ''}`} to="/categories">Categories</Link>
                 </li>
                 <li className="nav-item">
-                  <a className={`nav-link ${pathname === '/testimonials' ? 'active' : ''}`} href="/testimonials">Testimonials</a>
+                  <Link className={`nav-link ${pathname === '/testimonials' ? 'active' : ''}`} to="/testimonials">Testimonials</Link>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="/login">Logout</a>
+                  <Link className={`nav-link ${pathname === '/slides' ? 'active' : ''}`} to="/slides">Slides</Link>
+                </li>
+                {isAdmin && (
+                  <li className="nav-item">
+                    <Link className={`nav-link ${pathname === '/adminDashboard' ? 'active' : ''}`} to="/adminDashboard">Admin</Link>
+                  </li>
+                )}
+                <li className="nav-item">
+                  <Link className="nav-link" to="/login">Logout</Link>
                 </li>
               </ul>
             </div>
@@ -111,7 +119,7 @@ const NavBar = () => {
                     <a className="dropdown-item" href="#">Settings</a>
                   </li>
                   <li>
-                    <a className="dropdown-item" href="/login">Logout</a>
+                    <Link className="dropdown-item" to="/login">Logout</Link>
                   </li>
                 </ul>
               </div>
@@ -124,5 +132,3 @@ const NavBar = () => {
 };
 
 export default NavBar;
-
-

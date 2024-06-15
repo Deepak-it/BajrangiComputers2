@@ -3,10 +3,10 @@ import { LOGIN } from "../APIServices/APIEndpoints";
 import { NotificationManager } from "react-notifications";
 import Contact from "./contact";
 import "../../node_modules/bootstrap/dist/css/bootstrap.css"
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import DocumentTitle from "../changeTitle";
-import { useContext } from "react";
-import { MyContext } from "../context/MyContext";
+import { useDispatch } from "react-redux";
+import {saveLoginResponse} from "../actions/index";
 
 function Login() {
   DocumentTitle("Login || Bajrang Computers")
@@ -18,8 +18,8 @@ function Login() {
   const date = new Date();
   const currentYear = date.getFullYear();
   const navigate = useNavigate()
-  const { state, setState } = useContext(MyContext);
-  const isLoggedIn = state;
+  const dispatch = useDispatch()
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevState) => ({
@@ -35,12 +35,13 @@ function Login() {
   }
 
   const handleSubmit = async () => {
+    debugger;
     handleValidation()
     if(isLoginFormValid){
       const response = await LOGIN(formData)
       if(response.status === 200){
+        dispatch(saveLoginResponse(response.data))
         NotificationManager.success("Login Successful")
-        setState(prevState => ({ ...prevState, isLoggedIn: true }));
         navigate("/")
       }
     }
@@ -155,7 +156,7 @@ function Login() {
                   Login
                 </button>
                 <p className="small fw-bold mt-2 pt-1 mb-0">
-                  Don't have an account? <a href="#!" className="link-danger">Register</a>
+                  Don't have an account? <Link to = "/register" className="link-danger">Register</Link>
                 </p>
               </div>
             </form>

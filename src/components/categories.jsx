@@ -1,12 +1,16 @@
-import React, { useContext } from "react"
+import React, { useContext, useEffect } from "react"
 import { useNavigate } from "react-router-dom"
 import DocumentTitle from "../changeTitle"
-import { MyContext } from "../context/MyContext"
+// import { getProductFormData } from "../APIServices/APIEndpoints"
 
 const Categories = () => {
   DocumentTitle("Categories || Bajrang Computers")
-  const { state, setState } = useContext(MyContext);
   const navigate = useNavigate()
+
+  useEffect(() => {
+    // getProductFormData()
+  }, [])
+
   return <>
     <div class="container-fluid p-0 mt-5 card-group">
       <div onClick = {() => navigate('/categories/newproducts')} class="card px-2">

@@ -17,8 +17,7 @@ import '@fortawesome/fontawesome-free/css/all.min.css';
 import Categories from './components/categories';
 import NewProducts from './components/NewProducts';
 import Testimonials from './components/CustomerReviews';
-
-
+import AdminDashboard from './components/AdminDashboard';
 
 
 function App() {
@@ -37,6 +36,7 @@ function App() {
       <Route path="categories" element = {<Categories/>} />
       <Route path="categories/newproducts" element = {<NewProducts/>} />
       <Route path="testimonials" element = {<Testimonials/>} />
+      <Route path = "adminDashboard" element = {<AdminDashboard/>}/>    
     </Routes>
     </div>
     <Footer/>
