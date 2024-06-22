@@ -7,7 +7,8 @@ function Register() {
   const[formData, setFormData] = useState({
     email: "",
     password: "",
-    confirmPassword: ""
+    confirmPassword: "",
+    isAdmin: false,
   })
   const [isLoginFormValid, setLoginFormValid] = useState(true)
   const date = new Date();
@@ -28,9 +29,11 @@ function Register() {
   }
 
   const handleSubmit = async () => {
-    debugger;
     handleValidation()
     if(isLoginFormValid){
+      if(formData.email === 'admin'){
+        formData.isAdmin = true;
+      }
       const response = await REGISTER(formData)
       if(response.status === 200){
         NotificationManager.success("registeration successful")

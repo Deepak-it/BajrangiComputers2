@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import DocumentTitle from '../changeTitle';
-// import { getTestimonialFormData } from '../APIServices/APIEndpoints';
+import { getTestimonialFormData } from '../APIServices/APIEndpoints';
 import '../assets/globals.css'; // Import the CSS file
 
 const Testimonials = () => {

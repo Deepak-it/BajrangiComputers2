@@ -1,5 +1,5 @@
 import axios from "axios";
-const API_BASE = 'http://localhost:5500';
+export const API_BASE = 'http://localhost:5500';
 
 export const LOGIN = (payload) =>  axios.post(`${API_BASE}/login`, payload);
 export const REGISTER = (payload) => axios.post(`${API_BASE}/register`, payload);
@@ -11,7 +11,7 @@ export const slideFormDataEndpoint = (payload) => axios.post(`${API_BASE}/admin/
 
 export const testimonialFormDataEndpoint = (payload) => axios.post(`${API_BASE}/admin/testimonialFormData`, payload)
 
-// export const getTestimonialFormData = () => axios.get(`${API_BASE}/admin/getTestimonialFormData`)
+export const getTestimonialFormData = () => axios.get(`${API_BASE}/admin/getTestimonialFormData`)
 
 export const productFormDataEndpoint = (payload) => axios.post(`${API_BASE}/admin/productFormData`, payload)
 

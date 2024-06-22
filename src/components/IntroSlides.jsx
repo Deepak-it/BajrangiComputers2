@@ -1,20 +1,30 @@
 import React, { useEffect, useState } from "react";
-// import { getSlideData } from "../APIServices/APIEndpoints";
+import { getSlideData } from "../APIServices/APIEndpoints";
+import { saveSlidesResponse, saveTestimonialResponse } from "../actions/index"
+import { useDispatch, useSelector } from "react-redux";
+import axios from "axios";
+import {API_BASE} from "../APIServices/APIEndpoints"
 
 const IntroSlides = () => {
     const [activeIndex, setActiveIndex] = useState(0);
-    const [slides, setSlides] = useState([]);
+    const slides = useSelector((state) => state.content.slides);
+    const dispatch = useDispatch()
 
     useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const response = await getSlideData();
-                setSlides(response?.data || []);
-            } catch (error) {
-                console.error("Error fetching slides data:", error);
-            }
-        };
-        fetchData();
+        debugger;
+        // const fetchData = async () => {
+        //     // try {
+        //     //     // const response = await getSlideData();
+        //     //     dispatch(saveSlidesResponse(response?.data || []));
+        //     // } catch (error) {
+        //     //     console.error("Error fetching slides data:", error);
+        //     // }
+        // };
+        // if (slides.length === 0) {
+        //     fetchData();
+        // }
+        // getSlideData.then((response) => dispatch(saveSlidesResponse(response.data)))
+        axios.get(`${API_BASE}/admin/getSlideFormData`).then((response) => dispatch(saveSlidesResponse(response.data)))
     }, []);
 
     useEffect(() => {
